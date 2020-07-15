@@ -103,7 +103,7 @@ int eliminar() {
 	int num = aFila.dato[0];
 
 	int i;
-	for(i = 1; i < aFila.topo; i++) {
+	for(i = 1; i < aFila.topo + 1; i++) {
 		aFila.dato[i-1] = aFila.dato[i];
 	}
 	aFila.topo = aFila.topo - 1;
