@@ -61,7 +61,7 @@ int main() {
 }
 
 int filaVacia() {
-	if (aFila.topo = -1) {
+	if (aFila.topo == -1) {
 		return 1;
 	} else {
 		return 0;
