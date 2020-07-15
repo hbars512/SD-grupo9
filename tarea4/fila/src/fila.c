@@ -3,6 +3,7 @@
  *
  *  Created on: 14 jul. 2020
  *      Author: Grupo #9
+
  */
 
 #include <stdlib.h>
@@ -18,18 +19,15 @@ struct Fila {
 	int topo;
 } aFila;
 
-
-
 void inicializarFila();
 int filaLlena();
 int insertar(int dato);
 int filaVacia();
 int eliminar();
+int desenfilar();
+int topo();
 void mostrar();
-
-
 int main() {
-
 	int option;
 	int numero, dat;
 		do{
@@ -42,9 +40,7 @@ int main() {
 
 			printf("\n\n\tOpcion: ");
 			scanf("%d", &option);
-
 			switch(option) {
-
 				case 1: inicializarFila();
 						printf("\n\tLa fila ah sido creada.");
 						break;
@@ -63,21 +59,14 @@ int main() {
 			}
 
 		} while(option != 5);
-
-
-
 	return 0;
 }
-
-
 void inicializarFila() {
 	aFila.topo = -1;
 }
-
 int filaLlena() {
 	return aFila.topo == MAXPILA - 1? 1:0;
 }
-
 int filaVacia() {
 	if (aFila.topo == -1) {
 		return 1;
@@ -88,21 +77,20 @@ int filaVacia() {
 
 int insertar(int d)
 {
-	if (filaLlena(aFila)) {
+	if (filaLlena()) {
 		return ERRORPILALLENA;
-	} else {
-		aFila.topo = aFila.topo + 1;
-		aFila.dato[aFila.topo] = d;
-		return aFila.topo;
 	}
+	aFila.topo = aFila.topo + 1;
+	aFila.dato[aFila.topo] = d;
+	return aFila.topo;
 }
-
 
 int eliminar() {
 	//se eliminaria el primer elemento, pero los demas tendrias q "bajar"
 	int num = aFila.dato[0];
 
 	int i;
+
 	for(i = 1; i < aFila.topo + 1; i++) {
 		aFila.dato[i-1] = aFila.dato[i];
 	}
@@ -110,10 +98,6 @@ int eliminar() {
 
 	return num;
 }
-
-
-
-
 void mostrar() {
 	int i;
 	for(i = 0; i < aFila.topo + 1; i++) {
@@ -122,6 +106,22 @@ void mostrar() {
 }
 
 
+int desenfilar()
+{
+	if(filaVacia){
+		return ERRORPILAVACIA;
 
-
-
+	}else {
+		aFila.topo=aFila.topo-1;
+	}
+	return aFila.topo;
+}
+int topo()
+{
+	if(filaVacia){
+		printf("error Fila vacia al acceder ");
+		return ERRORPILAVACIA;
+	}else{
+		return aFila.dato[aFila.topo];
+	}
+}
