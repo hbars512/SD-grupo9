@@ -75,7 +75,7 @@ int pilaLlena() {
 }
 
 int pilaVacia() {
-	if (aPila.topo = -1) {
+	if (aPila.topo == -1) {
 		return 1;
 	} else {
 		return 0;
