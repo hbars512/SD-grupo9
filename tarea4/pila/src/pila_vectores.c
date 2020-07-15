@@ -1,9 +1,10 @@
 /*
  * pila_vectores.c
  *
- *  Created on: 15 jul. 2020
- *      Author: Andrés
+ *  Created on: Jul 15, 2020
+ *      Author: Grupo 9
  */
+
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -13,7 +14,6 @@
 
 
 struct Pila {
-
 	int dato[MAXPILA];
 	int topo;
 } aPila;
@@ -32,7 +32,6 @@ int topo();
 int main() {
 
 	int option;
-
 	int numero, dat;
 		do{
 			printf("\n\n ***** MENU PRINCIPAL *****");
@@ -73,7 +72,6 @@ void inicializarPila() {
 	aPila.topo = -1;
 }
 
-
 int pilaLlena() {
 	return aPila.topo == MAXPILA - 1? 1:0;
 }
@@ -88,7 +86,7 @@ int pilaVacia() {
 
 int empila(int d)
 {
-	if (pilaLlena) {
+	if (pilaLlena(aPila)) {
 		return ERRORPILALLENA;
 	} else {
 		aPila.topo = aPila.topo + 1;
