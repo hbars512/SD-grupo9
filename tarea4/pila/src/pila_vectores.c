@@ -24,6 +24,8 @@ void inicializarPila();
 int pilaLlena();
 int empila(int dato);
 int pilaVacia();
+int desempila();
+int topo();
 
 
 
@@ -37,12 +39,11 @@ int main() {
 			printf("\n 2: Mostrar la pila.");
 			printf("\n 3: Insertar elemento.");
 			printf("\n 4: Salir.");
-
+			printf("\n 5: Desempila");
+			printf("\n 6: topo");
 			printf("\n\n\tOpcion: ");
 			scanf("%d", &option);
-
 			switch(option) {
-
 				case 1: inicializarPila();
 						printf("\n\tLa pila ah sido creada.");
 						break;
@@ -56,16 +57,17 @@ int main() {
 						break;
 				case 4:
 						break;
+				case 5:
+						desempila();
+						printf("desempila");
+				case 6:
+						topo();
+						printf("topo");
+
 			}
-
-		} while(option != 4);
-
-
-
+		} while(option != 6);
 	return 0;
 }
-
-
 void inicializarPila() {
 	aPila.topo = -1;
 }
@@ -92,3 +94,27 @@ int empila(int d)
 		return aPila.topo;
 	}
 }
+
+int desempila()
+{
+	if(pilaVacia){
+		return ERRORPILAVACIA;
+		} else{
+			aPila.topo = aPila.topo-1;
+			return aPila.topo;
+		}
+
+}
+
+int topo()
+{
+	if (pilaVacia){
+		printf("error pila vacia al acceder ");
+		return ERRORPILAVACIA;
+
+	} else{
+		return aPila.dato[aPila.topo];
+	}
+}
+
+
