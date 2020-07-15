@@ -1,21 +1,18 @@
 /*
  * fila.c
  *
- *  Created on: 14 jul. 2020
- *      Author: Grupo #9
-
+ *  Created on: Jul 15, 2020
+ *      Author: Grupo 9
  */
 
 #include <stdlib.h>
 #include <stdio.h>
-
-#define MAXPILA 100
-#define ERRORPILALLENA -1
-#define ERRORPILAVACIA -2
-
+#define MAXFILA 100
+#define ERRORFILALLENA -1
+#define ERRORFILAVACIA -2
 
 struct Fila {
-	int dato[MAXPILA];
+	int dato[MAXFILA];
 	int topo;
 } aFila;
 
@@ -27,6 +24,7 @@ int eliminar();
 int desenfilar();
 int topo();
 void mostrar();
+
 int main() {
 	int option;
 	int numero, dat;
@@ -61,12 +59,7 @@ int main() {
 		} while(option != 5);
 	return 0;
 }
-void inicializarFila() {
-	aFila.topo = -1;
-}
-int filaLlena() {
-	return aFila.topo == MAXPILA - 1? 1:0;
-}
+
 int filaVacia() {
 	if (aFila.topo == -1) {
 		return 1;
@@ -75,10 +68,29 @@ int filaVacia() {
 	}
 }
 
+int enfila(int dato)
+{
+	if (filaLlena(aFila)) {
+		return ERRORFILALLENA;
+	} else {
+		aFila.topo = aFila.topo + 1;
+		aFila.dato[aFila.topo] = dato;
+		return aFila.topo;
+	}
+}
+
+void inicializarFila() {
+	aFila.topo = -1;
+}
+
+int filaLlena() {
+	return aFila.topo == MAXFILA - 1? 1:0;
+}
+
 int insertar(int d)
 {
 	if (filaLlena()) {
-		return ERRORPILALLENA;
+		return ERRORFILALLENA;
 	}
 	aFila.topo = aFila.topo + 1;
 	aFila.dato[aFila.topo] = d;
@@ -101,15 +113,15 @@ int eliminar() {
 void mostrar() {
 	int i;
 	for(i = 0; i < aFila.topo + 1; i++) {
-		printf("%d	", aFila.dato[i]);
+		printf("%d ", aFila.dato[i]);
 	}
 }
 
 
 int desenfilar()
 {
-	if(filaVacia){
-		return ERRORPILAVACIA;
+	if(filaVacia()){
+		return ERRORFILAVACIA;
 
 	}else {
 		aFila.topo=aFila.topo-1;
@@ -118,9 +130,9 @@ int desenfilar()
 }
 int topo()
 {
-	if(filaVacia){
+	if(filaVacia()){
 		printf("error Fila vacia al acceder ");
-		return ERRORPILAVACIA;
+		return ERRORFILAVACIA;
 	}else{
 		return aFila.dato[aFila.topo];
 	}
