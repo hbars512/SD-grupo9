@@ -1,3 +1,5 @@
+/*CONVIERTE UNA EXPRESION INFIJA DE LA FORMA 'a+b'  A UNA PREFIJA*/
+
 #include <stdio.h>
 #include <conio.h>
 #include <string.h>
@@ -71,7 +73,7 @@ void InfixtoPostfix(char source[], char target[]) {
 			target[j] = source[i];
 			j++;
 			i++;
-		} else if (source[i] == '+' || source[i] == '–' || source[i] == '*' || source[i] == '/' || source[i] == '%') {
+		} else if (source[i] == '+') {
 			while ((top != -1) && (st[top] != '(') && (st[top]!= '(') && (getPriority(st[top]) > getPriority(source[i]))) {
 				target[j] = pop(st);
 				j++;
@@ -93,7 +95,7 @@ void InfixtoPostfix(char source[], char target[]) {
 
 
 int getPriority(char op) {
-	if (op == '/' || op == '*' || op == '%') {
+	if (op == '+') {
 		return 1;
 	}
 	else {
